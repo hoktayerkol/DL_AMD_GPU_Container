@@ -1,0 +1,30 @@
+
+
+#    ipc: host
+
+
+services:
+  gpu:
+    #image: rocm/tensorflow:latest
+    container_name: deep_learning
+    privileged: true
+    network_mode: host
+    ipc: host
+    command: /bin/bash -c "while sleep 1000; do :, done"
+    #volumes:
+      #- /tmp/.X11-unix:/tmp/.X11-unix
+      #- $XAUTHORITY:/root/.Xauthority
+      #- /home/oktay/dockers:/ws
+    environment:
+      QT_X11_NO_MITSHM: 1
+      DISPLAY: $DISPLAY
+    devices:
+      - "/dev/dri:/dev/dri"
+      - "/dev/kfd:/dev/kfd" 
+    build:
+      context: .
+      shm_size: 16G
+      args: ["--group-add video, --cap-add=SYS_PTRACE", --security-opt seccomp=unconfined ]
+      dockerfile: Dockerfile
+
+    

@@ -1,0 +1,39 @@
+{
+	"name": "deep_larning_ati_r",
+	"service": "gpu",
+	"dockerComposeFile": "docker-compose.yml",
+	"shutdownAction":"stopCompose",
+
+	"customizations": {
+	  "vscode": {
+		"extensions": [
+			"ms-azuretools.vscode-docker",
+			"ms-python.python",
+			"ms-vscode.cpptools",
+			"twxs.cmake",
+			"ms-vscode.cmake-tools",
+			"ms-iot.vscode-ros",
+			"smilerobotics.urdf",
+			"yzhang.markdown-all-in-one"]
+	  }
+	},
+
+	"overrideCommand": true,
+	"workspaceFolder": "/ws",
+
+	/*
+	"containerEnv": {
+        "display": "unix:0"
+    },
+	*/
+
+	"mounts": [
+		// "source=${localWorkspaceFolder},target=/ws,type=bind,consistency=cached"
+		"source=${localWorkspaceFolder},target=/ws,type=bind,consistency=cached"
+		//"source=/tmp/.x11-unix,target=/tmp/.x11-unix,type=bind,consistency=cached",
+		//"$XAUTHORITY:/root/.Xauthority"
+		// /tmp/.X11-unix:/tmp/.X11-unix:rw
+      	// $XAUTHORITY:/root/.Xauthority
+	]
+
+  }
